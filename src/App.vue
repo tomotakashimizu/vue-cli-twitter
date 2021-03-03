@@ -1,9 +1,12 @@
 <template>
   <div id="app">
     <div id="nav">
+      <!-- router-link の仕事は URL を書きかえることだけ -->
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/my-page">MyPage</router-link>
     </div>
+    <!-- ページの内容を表示するのは次の <router-view /> というタグ（＝コンポーネント） -->
     <router-view />
   </div>
 </template>
