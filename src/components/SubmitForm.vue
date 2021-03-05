@@ -2,7 +2,7 @@
   <div class="form__wrapper">
     <textarea
       class="form__textarea"
-      v-model="text"
+      v-model="inputText"
       placeholder="いまどうしてる？"
     />
     <div class="form__buttons">
@@ -14,15 +14,41 @@
 </template>
 
 <script>
+import firebase from "firebase"
+
 export default {
   data() {
     return {
-      text: "",
+      inputText: "",
+      tweets: [
+        // {
+        //   id: "0GwoGZuhTNhqHQDBeiVW",
+        //   text: "こんにちは、ツイートの本文です。"
+        // }
+      ],
     }
   },
   methods: {
     postTweet() {
-      alert("投稿機能の完成をお楽しみに！")
+      if (this.inputText == "") {
+        alert("何も入力されていません。")
+        return
+      }
+      const tweet = {
+        text: this.inputText,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      }
+      firebase
+        .firestore()
+        .collection("tweets")
+        .add(tweet)
+        .then((ref) => {
+          this.tweets.push({
+            id: ref.id,
+            ...tweet,
+          })
+        })
+      this.inputText = ""
     },
   },
 }
