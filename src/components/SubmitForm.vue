@@ -10,6 +10,11 @@
         投稿
       </button>
     </div>
+    <div>
+      <p v-for="tweet in tweets" :key="tweet.id">
+        {{ tweet.text }}
+      </p>
+    </div>
   </div>
 </template>
 
@@ -50,6 +55,21 @@ export default {
         })
       this.inputText = ""
     },
+  },
+  created() {
+    firebase
+      .firestore()
+      .collection("tweets")
+      .orderBy("createdAt")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          this.tweets.push({
+            id: doc.id,
+            ...doc.data(),
+          })
+        })
+      })
   },
 }
 </script>
