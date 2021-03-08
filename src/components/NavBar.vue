@@ -6,6 +6,9 @@
     </router-link>
     <div class="nav__items">
       <router-link to="/about" class="nav__item nav__link">About</router-link>
+      <router-link to="/chat-page" class="nav__item nav__link">
+        ChatPage
+      </router-link>
       <router-link to="/my-page" class="nav__item nav__link">
         MyPage
       </router-link>
