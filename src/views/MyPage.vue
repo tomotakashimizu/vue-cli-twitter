@@ -1,7 +1,7 @@
 <template>
   <div class="my-page">
     <h1>This is my page</h1>
-    <button v-on:click="signIn">サインインする</button>
+    <button v-on:click="signIn">ログインする</button>
   </div>
 </template>
 
