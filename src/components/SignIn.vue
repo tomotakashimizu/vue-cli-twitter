@@ -4,7 +4,8 @@
       <div v-if="isSignIn">ログアウトする</div>
       <div v-else>ログインする</div>
     </button>
-    <div v-if="isSignIn">{{ user.email }}</div>
+    <h2 v-if="isSignIn">ログインしているユーザー情報</h2>
+    <div v-if="isSignIn">Googleアカウント：{{ user.email }}</div>
   </div>
 </template>
 
