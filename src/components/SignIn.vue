@@ -4,8 +4,6 @@
       <div v-if="isSignIn">ログアウトする</div>
       <div v-else>ログインする</div>
     </button>
-    <!-- <button v-if="isSignIn" v-on:click="signOut">ログアウトする</button>
-    <button v-else v-on:click="signIn">ログインする</button> -->
     <div v-if="isSignIn">{{ user.email }}</div>
   </div>
 </template>
@@ -25,8 +23,6 @@ export default {
       if (this.isSignIn == false) {
         var provider = new firebase.auth.GoogleAuthProvider()
         // firebase.auth().signInWithRedirect(provider)
-        // this.isSignIn = true
-        // localStorage.isSignIn = JSON.stringify(this.isSignIn)
 
         firebase
           .auth()
@@ -35,7 +31,6 @@ export default {
             /** @type {firebase.auth.OAuthCredential} */
 
             this.isSignIn = true
-            localStorage.isSignIn = JSON.stringify(this.isSignIn)
           })
           .catch((error) => {
             // Handle Errors here.
@@ -48,7 +43,6 @@ export default {
           .then(() => {
             // Sign-out successful.
             this.isSignIn = false
-            localStorage.isSignIn = JSON.stringify(this.isSignIn)
           })
           .catch((error) => {
             // An error happened.
@@ -58,12 +52,7 @@ export default {
     },
   },
   created() {
-    // 画面起動時ログインしているか判断
-    // this.isSignIn = 値 ? 値が空じゃなければこの値を採用 : 値が空の場合この値を採用
-    // this.isSignIn = localStorage.isSignIn
-    //   ? JSON.parse(localStorage.isSignIn)
-    //   : false
-
+    // ログイン状態を識別
     firebase.auth().onAuthStateChanged((user) => {
       this.user = user ? user : {}
 
