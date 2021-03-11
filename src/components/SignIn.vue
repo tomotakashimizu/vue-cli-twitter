@@ -5,7 +5,7 @@
       <div v-else>ログインする</div>
     </button>
     <h2 v-if="isSignIn">ログインしているユーザー情報</h2>
-    <img v-if="isSignIn" :src="user.photoURL" class="user-photo" />
+    <img v-if="isSignIn" :src="user.photoURL" class="rounded" />
     <div v-if="isSignIn">Googleアカウント：{{ user.email }}</div>
     <div v-if="isSignIn">ユーザー名：{{ user.displayName }}</div>
   </div>
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style scoped>
-.user-photo {
+.rounded {
   border-radius: 50px;
 }
 </style>
