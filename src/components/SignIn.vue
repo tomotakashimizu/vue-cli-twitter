@@ -5,7 +5,9 @@
       <div v-else>ログインする</div>
     </button>
     <h2 v-if="isSignIn">ログインしているユーザー情報</h2>
+    <img v-if="isSignIn" :src="user.photoURL" class="user-photo" />
     <div v-if="isSignIn">Googleアカウント：{{ user.email }}</div>
+    <div v-if="isSignIn">ユーザー名：{{ user.displayName }}</div>
   </div>
 </template>
 
@@ -30,8 +32,6 @@ export default {
           .signInWithPopup(provider)
           .then(() => {
             /** @type {firebase.auth.OAuthCredential} */
-
-            this.isSignIn = true
           })
           .catch((error) => {
             // Handle Errors here.
@@ -43,7 +43,6 @@ export default {
           .signOut()
           .then(() => {
             // Sign-out successful.
-            this.isSignIn = false
           })
           .catch((error) => {
             // An error happened.
@@ -66,3 +65,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.user-photo {
+  border-radius: 50px;
+}
+</style>
