@@ -4,10 +4,12 @@
       <div v-if="isSignIn">ログアウトする</div>
       <div v-else>ログインする</div>
     </button>
-    <h2 v-if="isSignIn">ログインしているユーザー情報</h2>
-    <img v-if="isSignIn" :src="user.photoURL" class="rounded" />
-    <div v-if="isSignIn">Googleアカウント：{{ user.email }}</div>
-    <div v-if="isSignIn">ユーザー名：{{ user.displayName }}</div>
+    <div v-if="isSignIn">
+      <h2>ログインしているユーザー情報</h2>
+      <img :src="user.photoURL" class="rounded" />
+      <div>Googleアカウント：{{ user.email }}</div>
+      <div>ユーザー名：{{ user.displayName }}</div>
+    </div>
   </div>
 </template>
 
